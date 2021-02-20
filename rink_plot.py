@@ -188,10 +188,15 @@ def draw_rink(is_horizontal=True, x_range=None, y_range=None, rink_length=None):
                         "red", zorder=0)
 
         # nets
-        # depth is 40" with 20" radius corner
-        patches.append(mpatches.Rectangle((89*side, -3), 20.0/12 * side, 6, color="grey", zorder=2))
-        patches.append(arc_patch(((89 + 20.0/12) * side, 0), 20.0/12, 3, 270 + 180 * side, 270,
-                                 fill=True, color="grey", zorder=2))
+        # depth is 40" with 18" radius (NHL rulebook says 20", but supposed to be 18")
+        # width of posts is 19/8", total width is 88"
+        # almost certainly incorrect, but close enough
+        patches.append(mpatches.Circle(((89 + 11/6) * side, 3 - 5/6), 18/12, color="grey", zorder=2))
+        patches.append(mpatches.Circle(((89 + 11/6) * side, 5/6 - 3), 18/12, color="grey", zorder=2))
+        patches.append(mpatches.Polygon(
+            [[89 * side, 3 + 19 / 8 / 12], [(89 + 11/6) * side, 88 / 24], [(89 + 40 / 12) * side, 3 - 5/6],
+             [(89 + 40 / 12) * side, 5 / 6 - 3], [(89 + 11 / 6) * side, -88 / 24], [89 * side, -3 - 19 / 8 / 12]],
+            color="grey", zorder=2))
 
         # creases
         # rectangle extends 4'6" out, then ellipse of width 2'
