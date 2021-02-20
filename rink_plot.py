@@ -67,8 +67,6 @@ def draw_rink(is_horizontal=True, x_range=None, y_range=None, rink_length=None):
             If None, will use default of 14 if using a full horizontal rink or 8 otherwise.
             Width is set automatically based on rink_length and dimensions used.
 
-            Using values larger than what can fit on the screen will lead to distortions.
-
     Returns:
         matplotlib Axes.
             Axes for the rink plot.
@@ -122,6 +120,8 @@ def draw_rink(is_horizontal=True, x_range=None, y_range=None, rink_length=None):
     plt.figure(figsize=(length, width))
 
     ax = plt.gca()
+    ax.set_aspect("equal")
+
     patches = []
 
     # red line
